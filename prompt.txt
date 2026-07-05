@@ -1,0 +1,1 @@
+读 project knowledge 里的 CLAUDE.md,它是约束性文件,严格执行其中 §2 会话协议和 §4 硬性不变量。本次只做这张任务卡:docs/ai/tasks/P0-01-project-bootstrap.md(也在 knowledge 里),不越界。当前状态(CLAUDE.md §6 原文):<粘贴那几行>。从卡上列的概念小课开始教我,中文对话,产物英文。会话结束时给我三样:§6 的更新文本、commit message、对照 §4 的对抗性自检。
