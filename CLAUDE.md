@@ -50,7 +50,7 @@ This repo is built by a single owner working with AI assistants across many **se
 
 ## 6. Current state — update every session
 
-- **Phase:** 0 — not started (documentation skeleton only)
-- **Done:** docs skeleton; default currency decided → **MYR** (ADR-0002); **P2 design spec drafted** — `docs/design/ledger-spec.md`, status DRAFT, must be audited at P2 entry (§12) before implementation; P2 task cards P2-01…P2-06 drafted; **P3 pitfall register + test specs drafted** — `docs/design/p3-stripe-pitfalls-and-tests.md`, DRAFT, audited at P3 entry (§6); **P5–P6 compliance sketch drafted** — `docs/design/p5-p6-compliance-sketch.md`, DRAFT, audited at P5/P6 entry (§7); system blueprint (`docs/blueprint.md`); session prompt kit incl. literal first-message (`docs/ai/SESSION_PROMPT.md`) (2026-07-04)
-- **Next card:** `docs/ai/tasks/P0-01-project-bootstrap.md`
+- **Phase:** 0 — done
+- **Done:** P0 runnable Spring Boot skeleton completed: Java 21 / Spring Boot 3.x / Maven app; module packages `payments`, `ledger`, `compliance`, and `common` with package responsibilities; env-based MySQL config; Docker Compose app + MySQL; Actuator health exposed; Flyway `V1__baseline.sql`; Testcontainers MySQL context-load and health endpoint tests; GitHub Actions `mvn -B verify`; README quickstart. Default currency remains **MYR** (ADR-0002). Existing drafts remain unchanged: P2 design spec (`docs/design/ledger-spec.md`, DRAFT, audit at P2 entry §12), P2 task cards P2-01…P2-06, P3 pitfall register/test specs (`docs/design/p3-stripe-pitfalls-and-tests.md`, DRAFT, audit at P3 entry §6), P5–P6 compliance sketch (`docs/design/p5-p6-compliance-sketch.md`, DRAFT, audit at P5/P6 entry §7), system blueprint (`docs/blueprint.md`), and session prompt kit (`docs/ai/SESSION_PROMPT.md`).
+- **Next card:** first Phase 1 card after the Phase 1 entry ritual / task-card selection
 - **Open questions:** none

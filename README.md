@@ -4,7 +4,7 @@ A payments + compliance middle platform, built on Stripe **test mode**: payment 
 
 > Solo learning/portfolio project. No real money, no real card data, test-mode keys only.
 
-**Status:** Phase 0 — docs-first, pre-development. See [ROADMAP.md](ROADMAP.md).
+**Status:** Phase 0 done — runnable backend skeleton. See [ROADMAP.md](ROADMAP.md).
 
 ## Why this exists
 
@@ -34,5 +34,51 @@ Prerequisites:
 
 Create a local environment file:
 
-```PowerShell
+Windows PowerShell:
+
+```powershell
 Copy-Item .env.example .env
+```
+
+macOS/Linux:
+
+```bash
+cp .env.example .env
+```
+
+Start MySQL and the Spring Boot app:
+
+```powershell
+docker compose up
+```
+
+Check application health:
+
+```powershell
+Invoke-RestMethod http://localhost:8080/actuator/health
+```
+
+Expected response:
+
+```json
+{"status":"UP"}
+```
+
+Run the verification suite:
+
+```powershell
+mvn -B verify
+```
+
+Everyday IDE loop:
+
+1. Start only MySQL with Docker Compose:
+
+   ```powershell
+   docker compose up mysql
+   ```
+
+2. Run `LedgerPayApplication` from the IDE.
+3. Use `jdbc:mysql://localhost:3306/ledgerpay` from the host machine.
+
+Inside Docker Compose, the app uses `jdbc:mysql://mysql:3306/ledgerpay`; from the IDE, the app uses `localhost:3306` because it is running on the host.

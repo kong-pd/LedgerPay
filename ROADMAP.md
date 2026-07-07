@@ -4,7 +4,7 @@ Milestone-based. Week numbers assume ~10 h/week and are estimates (±50%) — tr
 
 | Phase | Weeks* | Focus | New skills | Exit deliverables | Status |
 |---|---|---|---|---|---|
-| 0 | 1 | Runnable skeleton | Spring Initializr, Compose, CI | `docker compose up` → app + MySQL healthy; Flyway baseline; CI green; secrets hygiene | ☐ |
+| 0 | 1 | Runnable skeleton | Spring Initializr, Compose, CI | `docker compose up` → app + MySQL healthy; Flyway baseline; CI green; secrets hygiene | ☑ |
 | 1 | 1–3 | Spring Boot + REST foundations | MVC layering, JPA, DTO/validation, error handling, springdoc, Postman | Customer/Account CRUD + OpenAPI + Postman collection + first tests | ☐ |
 | 2 | 3–6 | **Ledger core** | double-entry, ACID/transactions, state machines, idempotency | internal transfer API + invariant & concurrency test suite proving the books always balance | ☐ |
 | 3 | 6–9 | Stripe + webhooks + reconciliation | Stripe Checkout, webhook signatures/ordering, scheduled jobs | test-mode payments + refunds + daily reconciliation report | ☐ |
