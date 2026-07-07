@@ -1,0 +1,49 @@
+name: ledgerpay
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: ledgerpay-mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-ledgerpay}
+      MYSQL_USER: ${MYSQL_USER:-ledgerpay}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-ledgerpay}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-ledgerpay_root}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u$${MYSQL_USER} -p$${MYSQL_PASSWORD} --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  app:
+    image: maven:3.9.9-eclipse-temurin-21
+    container_name: ledgerpay-app
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - maven_cache:/root/.m2
+    command: mvn spring-boot:run
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE:-ledgerpay}
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-ledgerpay}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD:-ledgerpay}
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/actuator/health | grep '\"status\":\"UP\"'"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 60s
+
+volumes:
+  mysql_data:
+  maven_cache:

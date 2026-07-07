@@ -27,4 +27,12 @@ To learn and demonstrate the engineering layer real fintech teams build *above* 
 
 ## Quickstart
 
-_Arrives with the Phase 0 code skeleton: `docker compose up` → app + MySQL + health check._
+Prerequisites:
+
+- Docker Desktop
+- Java 21 and Maven 3.9+ for local `mvn -B verify`
+
+Create a local environment file:
+
+```PowerShell
+Copy-Item .env.example .env

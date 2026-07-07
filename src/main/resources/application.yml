@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: ledgerpay
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/ledgerpay}
+    username: ${SPRING_DATASOURCE_USERNAME:ledgerpay}
+    password: ${SPRING_DATASOURCE_PASSWORD:ledgerpay}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true
