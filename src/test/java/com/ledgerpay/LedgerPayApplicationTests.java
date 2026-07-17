@@ -22,7 +22,8 @@ class LedgerPayApplicationTests {
 
     @Container
     @ServiceConnection
-    static final MySQLContainer<?> mysql = new MySQLContainer<>("mysql:8");
+    static final MySQLContainer<?> mysql = new MySQLContainer<>("mysql:8")
+            .withUrlParam("sslMode", "DISABLED");
 
     @Autowired
     private MockMvc mockMvc;
