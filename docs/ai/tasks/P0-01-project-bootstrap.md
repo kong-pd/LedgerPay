@@ -20,8 +20,8 @@ A cloneable repo where `docker compose up` yields app + MySQL with a passing hea
 Any business entity/endpoint · Spring Security · Lombok · React · deployment.
 
 ### Test specs
-- [ ] `contextLoads`: application context starts against a Testcontainers `mysql:8` container
-- [ ] `GET /actuator/health` → 200 with status `UP` (MockMvc/WebTestClient)
+- [x] `contextLoads`: application context starts against a Testcontainers `mysql:8` container
+- [x] `GET /actuator/health` → 200 with status `UP` (MockMvc/WebTestClient)
 
 ### Steps sketch
 1. Concept mini-course (list above) → owner restates each
@@ -33,13 +33,13 @@ Any business entity/endpoint · Spring Security · Lombok · React · deployment
 7. README quickstart section (clone → env → compose → curl health)
 
 ### Acceptance criteria
-- [ ] Fresh clone + `.env` from example + `docker compose up` → health returns UP (exact curl command shown in README)
-- [ ] `mvn -B verify` green locally (with Docker running) and in CI
-- [ ] No secrets anywhere in git history; GitHub push protection enabled (owner action)
-- [ ] Four module packages exist with responsibilities
+- [x] Fresh clone + `.env` from example + `docker compose up` → health returns UP (exact curl command shown in README)
+- [x] `mvn -B verify` green locally (with Docker running) and in CI
+- [x] No secrets anywhere in git history; GitHub push protection enabled (owner action)
+- [x] Four module packages exist with responsibilities
 
 ### Handback checklist
-- [ ] `CLAUDE.md` §6 → Phase 0 done, next card P1-01
-- [ ] `ROADMAP.md` Phase 0 ticked
-- [ ] Deviations → Icebox or draft ADR
-- [ ] Adversarial self-review vs `CLAUDE.md` §4 (especially #8: secrets)
+- [x] `CLAUDE.md` §6 → Phase 0 done, next card P1-01
+- [x] `ROADMAP.md` Phase 0 ticked
+- [x] Deviations → Icebox or draft ADR (none requiring either)
+- [x] Adversarial self-review vs `CLAUDE.md` §4 (especially #8: secrets)
