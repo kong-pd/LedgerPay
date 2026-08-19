@@ -53,5 +53,5 @@ This repo is built by a single owner working with AI assistants across many **se
 
 - **Phase:** 1 — in progress
 - **Done:** Phase 0 remains owner-verified and complete. ADR-0006 assigns Customer and Account ownership to `payments`, while `ledger` owns the later LedgerAccount representation and `compliance` owns later KYC decisions. P1-01 Customer CRUD is owner-verified locally: Flyway `V2__create_customer.sql`; layered API/application/domain/infrastructure code; normalized unique emails; ACTIVE/SUSPENDED status; DTO validation; paginated status filtering; consistent `{code, message, fieldErrors[]}` errors; and MockMvc integration tests backed by Testcontainers MySQL. Manual CRUD/error-contract checks and `mvn -B verify` are green; the build produces the executable Spring Boot JAR. P1-02 and P1-03 are defined. Existing P2/P3/P5–P6 design drafts remain unchanged.
-- **Next card:** `docs/ai/tasks/P1-02-account-crud.md`. First confirm P1-01 CI after push, then implement Account CRUD without ledger balances or KYC gating.
+- **Next card:** `docs/ai/tasks/P1-02-account-crud.md`. Implement Account CRUD without ledger balances or KYC gating.
 - **Open questions:** none
