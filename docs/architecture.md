@@ -30,12 +30,14 @@ flowchart LR
 
 | Module | Owns | Key rule |
 |---|---|---|
-| `payments` | Stripe integration, payment/refund orchestration, webhook endpoint, payment state machine, reconciliation job | never sees or stores card data |
+| `payments` | Customer and Account lifecycle; Stripe integration, payment/refund orchestration, webhook endpoint, payment state machine, reconciliation job | never sees or stores card data |
 | `ledger` | chart of accounts, journal entries, balances, posting API | **sole writer** of ledger tables; append-only; balanced entries |
 | `compliance` | KYC pipeline, monitoring rules, alerts, cases, audit hash chain | append-only audit; every action audited |
 | `common` | shared config, error model, idempotency support, security plumbing | no business logic |
 
 Cross-module interaction goes through Java interfaces (later, application events where they fit). Interaction details: TBW Phases 2 and 6.
+
+Customer and Account are owned by `payments`; `ledger` owns the later accounting representation and `compliance` owns the later KYC decision record (ADR-0006).
 
 ## Design notes
 

@@ -1,4 +1,5 @@
 /**
- * Stripe integration, payment/refund orchestration, webhook endpoint, payment state machine, and reconciliation job.
+ * Customer and Account lifecycle, Stripe integration, payment/refund orchestration,
+ * webhook processing, payment state transitions, and reconciliation.
  */
 package com.ledgerpay.payments;
