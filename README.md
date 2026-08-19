@@ -2,13 +2,13 @@
 
 A payments + compliance middle platform, built on Stripe **test mode**: payment orchestration backed by a double-entry ledger, with a RegTech compliance layer — KYC onboarding, transaction monitoring with automatic case creation, and a tamper-evident audit chain.
 
-> Solo learning/portfolio project. No real money, no real card data, test-mode keys only.
+> Stripe test mode only. LedgerPay does not process real money or store card data.
 
-**Status:** Phase 0 done — runnable backend skeleton. See [ROADMAP.md](ROADMAP.md).
+**Status:** Phase 1 in progress — Customer CRUD foundation complete; Account CRUD is next. See [ROADMAP.md](ROADMAP.md).
 
-## Why this exists
+## Engineering focus
 
-To learn and demonstrate the engineering layer real fintech teams build *above* the card networks: ledger correctness, idempotency, payment state machines, webhook reconciliation, and KYC/AML operations.
+LedgerPay focuses on the engineering layer fintech platforms build *above* the card networks: ledger correctness, idempotency, payment state machines, webhook reconciliation, and KYC/AML operations.
 
 ## Documentation map
 
@@ -21,9 +21,9 @@ To learn and demonstrate the engineering layer real fintech teams build *above* 
 | [docs/stories.md](docs/stories.md) | Personas and epic-level user stories |
 | [docs/adr/](docs/adr/) | Architecture Decision Records (binding) |
 | [docs/design/](docs/design/) | Detailed design specs (e.g. ledger-spec.md — DRAFT until audited at phase entry) |
-| [CLAUDE.md](CLAUDE.md) | AI-assisted development: context pack, working rules, hard invariants |
-| [docs/ai/curriculum.md](docs/ai/curriculum.md) | Learning curriculum + self-check questions per phase |
-| [docs/ai/tasks/](docs/ai/tasks/) | Task cards — the unit of work for each AI session |
+| [CLAUDE.md](CLAUDE.md) | Project context, working rules, and hard invariants |
+| [docs/ai/curriculum.md](docs/ai/curriculum.md) | Phase-by-phase technical topics and verification checkpoints |
+| [docs/ai/tasks/](docs/ai/tasks/) | Implementation task cards, scope, and acceptance criteria |
 
 ## Quickstart
 
