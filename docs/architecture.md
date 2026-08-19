@@ -37,7 +37,7 @@ flowchart LR
 
 Cross-module interaction goes through Java interfaces (later, application events where they fit). Interaction details: TBW Phases 2 and 6.
 
-Customer and Account are owned by `payments`; `ledger` owns the later accounting representation and `compliance` owns the later KYC decision record (ADR-0006).
+Customer and Account are owned by `payments`; `ledger` owns the later accounting representation and `compliance` owns the later KYC decision record (ADR-0006). Account is deliberately balance-free and MYR-only so the future LedgerAccount remains the single source of truth for balances (ADR-0007).
 
 ## Design notes
 

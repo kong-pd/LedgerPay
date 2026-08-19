@@ -1,10 +1,10 @@
-package com.ledgerpay.payments.customer.api;
+package com.ledgerpay.payments.account.api;
 
 import com.ledgerpay.common.api.PageResponse;
-import com.ledgerpay.payments.customer.application.CustomerData;
-import com.ledgerpay.payments.customer.application.CustomerPage;
-import com.ledgerpay.payments.customer.application.CustomerService;
-import com.ledgerpay.payments.customer.domain.CustomerStatus;
+import com.ledgerpay.payments.account.application.AccountData;
+import com.ledgerpay.payments.account.application.AccountPage;
+import com.ledgerpay.payments.account.application.AccountService;
+import com.ledgerpay.payments.account.domain.AccountStatus;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -24,42 +24,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/customers")
-public class CustomerController {
+@RequestMapping("/api/v1/accounts")
+public class AccountController {
 
-    private final CustomerService customerService;
+    private final AccountService accountService;
 
-    public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
     }
 
     @PostMapping
-    ResponseEntity<CustomerResponse> create(
-            @Valid @RequestBody CreateCustomerRequest request
+    ResponseEntity<AccountResponse> create(
+            @Valid @RequestBody CreateAccountRequest request
     ) {
-        CustomerData customer = customerService.create(
-                request.email(),
-                request.fullName()
+        AccountData account = accountService.create(
+                request.customerId(),
+                request.name()
         );
 
         URI location = URI.create(
-                "/api/v1/customers/" + customer.id()
+                "/api/v1/accounts/" + account.id()
         );
 
         return ResponseEntity
                 .created(location)
-                .body(CustomerResponse.from(customer));
+                .body(AccountResponse.from(account));
     }
 
     @GetMapping("/{id}")
-    CustomerResponse get(
+    AccountResponse get(
             @PathVariable @Positive long id
     ) {
-        return CustomerResponse.from(customerService.get(id));
+        return AccountResponse.from(accountService.get(id));
     }
 
     @GetMapping
-    PageResponse<CustomerResponse> list(
+    PageResponse<AccountResponse> list(
             @RequestParam(defaultValue = "0")
             @Min(0)
             int page,
@@ -70,33 +70,40 @@ public class CustomerController {
             int size,
 
             @RequestParam(required = false)
-            CustomerStatus status
+            @Positive
+            Long customerId,
+
+            @RequestParam(required = false)
+            AccountStatus status
     ) {
-        CustomerPage customerPage =
-                customerService.list(page, size, status);
+        AccountPage accountPage = accountService.list(
+                page,
+                size,
+                customerId,
+                status
+        );
 
         return new PageResponse<>(
-                customerPage.content()
+                accountPage.content()
                         .stream()
-                        .map(CustomerResponse::from)
+                        .map(AccountResponse::from)
                         .toList(),
-                customerPage.page(),
-                customerPage.size(),
-                customerPage.totalElements(),
-                customerPage.totalPages()
+                accountPage.page(),
+                accountPage.size(),
+                accountPage.totalElements(),
+                accountPage.totalPages()
         );
     }
 
     @PutMapping("/{id}")
-    CustomerResponse update(
+    AccountResponse update(
             @PathVariable @Positive long id,
-            @Valid @RequestBody UpdateCustomerRequest request
+            @Valid @RequestBody UpdateAccountRequest request
     ) {
-        return CustomerResponse.from(
-                customerService.update(
+        return AccountResponse.from(
+                accountService.update(
                         id,
-                        request.email(),
-                        request.fullName(),
+                        request.name(),
                         request.status()
                 )
         );
@@ -106,7 +113,7 @@ public class CustomerController {
     ResponseEntity<Void> delete(
             @PathVariable @Positive long id
     ) {
-        customerService.delete(id);
+        accountService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
