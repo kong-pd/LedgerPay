@@ -4,7 +4,7 @@ A payments + compliance middle platform, built on Stripe **test mode**: payment 
 
 > Stripe test mode only. LedgerPay does not process real money or store card data.
 
-**Status:** Phase 1 in progress — Customer CRUD foundation complete; Account CRUD is next. See [ROADMAP.md](ROADMAP.md).
+**Status:** Phase 1 REST foundation — Customer and Account CRUD with OpenAPI and a reproducible Postman workflow. See [ROADMAP.md](ROADMAP.md).
 
 ## Engineering focus
 
@@ -82,3 +82,18 @@ Everyday IDE loop:
 3. Use `jdbc:mysql://localhost:3306/ledgerpay` from the host machine.
 
 Inside Docker Compose, the app uses `jdbc:mysql://mysql:3306/ledgerpay`; from the IDE, the app uses `localhost:3306` because it is running on the host.
+
+## API documentation
+
+With the application running, open:
+
+- Swagger UI: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+- OpenAPI JSON: [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
+
+The generated contract covers all Phase 1 Customer and Account operations under `/api/v1`.
+
+## Postman workflow
+
+Import [postman/LedgerPay-Phase-1.postman_collection.json](postman/LedgerPay-Phase-1.postman_collection.json) into Postman, then run the `Phase 1 workflow` folder with the Collection Runner.
+
+The collection defaults to `http://localhost:8080`, creates a unique test Customer, exercises Customer and Account CRUD, verifies representative `400`, `404`, and `409` error contracts, and removes the records it created. MySQL and the application must already be running; no Postman environment or secrets are required.

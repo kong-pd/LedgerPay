@@ -1,0 +1,3 @@
+# Phase 1 retrospective
+
+Phase 1 showed that reliable CRUD is less about endpoint count and more about the contracts around each endpoint: DTOs keep HTTP and persistence concerns separate, Bean Validation and global exception handling make failures predictable, Flyway makes schema evolution reviewable, and Testcontainers exposes real MySQL behavior. OpenAPI and the executable Postman workflow turn those choices into a discoverable and reproducible public contract. The architectural lesson is that Controllers own transport concerns, Services own use-case and transaction boundaries, and Repositories own persistence; preserving those boundaries will become even more important when Phase 2 introduces ledger invariants.
