@@ -4,7 +4,7 @@ A payments + compliance middle platform, built on Stripe **test mode**: payment 
 
 > Stripe test mode only. LedgerPay does not process real money or store card data.
 
-**Status:** Phase 1 REST foundation — Customer and Account CRUD with OpenAPI and a reproducible Postman workflow. See [ROADMAP.md](ROADMAP.md).
+**Status:** Phase 1 complete — Customer and Account CRUD, consistent API errors, OpenAPI, and a reproducible Postman workflow. Phase 2 ledger work is next. See [ROADMAP.md](ROADMAP.md).
 
 ## Engineering focus
 
