@@ -47,10 +47,10 @@ A phase closes only when every box ticks. P0/P1 are pre-filled. **Later phases a
 - [ ] Four module packages exist, each with a one-line responsibility in `package-info.java`
 
 ### Phase 1 — REST foundations
-- [ ] Customer & Account CRUD with bean validation, pagination, and a consistent global error format
+- [x] Customer & Account CRUD with bean validation, pagination, and a consistent global error format
 - [ ] OpenAPI served via springdoc; Postman collection committed
-- [ ] Controller/service tests run against Testcontainers MySQL in CI
-- [ ] DTOs fully separated from JPA entities
+- [x] Controller/service tests run against Testcontainers MySQL in CI
+- [x] DTOs fully separated from JPA entities
 
 ### Phase 2 — Ledger core
 _DoD to be written by owner at phase entry, after the concept course._

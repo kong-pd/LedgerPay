@@ -13,6 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ledgerpay.payments.account.infrastructure.AccountRepository;
 import com.ledgerpay.payments.customer.infrastructure.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,10 +46,14 @@ class CustomerControllerIntegrationTests {
     private ObjectMapper objectMapper;
 
     @Autowired
+    private AccountRepository accountRepository;
+
+    @Autowired
     private CustomerRepository customerRepository;
 
     @BeforeEach
     void cleanDatabase() {
+        accountRepository.deleteAll();
         customerRepository.deleteAll();
     }
 

@@ -1,4 +1,4 @@
-package com.ledgerpay.payments.customer.api;
+package com.ledgerpay.common.api;
 
 import java.util.List;
 

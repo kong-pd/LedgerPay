@@ -2,6 +2,7 @@ package com.ledgerpay.payments.customer.application;
 
 import com.ledgerpay.common.error.ResourceConflictException;
 import com.ledgerpay.common.error.ResourceNotFoundException;
+import com.ledgerpay.payments.account.application.AccountService;
 import com.ledgerpay.payments.customer.domain.Customer;
 import com.ledgerpay.payments.customer.domain.CustomerStatus;
 import com.ledgerpay.payments.customer.infrastructure.CustomerRepository;
@@ -23,10 +24,18 @@ public class CustomerService {
     private static final String EMAIL_CONFLICT_CODE =
             "CUSTOMER_EMAIL_CONFLICT";
 
-    private final CustomerRepository customerRepository;
+    private static final String HAS_ACCOUNTS_CODE =
+            "CUSTOMER_HAS_ACCOUNTS";
 
-    public CustomerService(CustomerRepository customerRepository) {
+    private final CustomerRepository customerRepository;
+    private final AccountService accountService;
+
+    public CustomerService(
+            CustomerRepository customerRepository,
+            AccountService accountService
+    ) {
         this.customerRepository = customerRepository;
+        this.accountService = accountService;
     }
 
     @Transactional
@@ -120,7 +129,21 @@ public class CustomerService {
     @Transactional
     public void delete(long id) {
         Customer customer = findCustomer(id);
-        customerRepository.delete(customer);
+
+        if (accountService.hasAccountsForCustomer(id)) {
+            throw customerHasAccounts(id);
+        }
+
+        try {
+            customerRepository.delete(customer);
+            customerRepository.flush();
+        } catch (DataIntegrityViolationException exception) {
+            /*
+             * The foreign key remains the final protection if an
+             * account is created concurrently after the check.
+             */
+            throw customerHasAccounts(id);
+        }
     }
 
     private Customer findCustomer(long id) {
@@ -141,6 +164,16 @@ public class CustomerService {
                 EMAIL_CONFLICT_CODE,
                 "A customer with email %s already exists"
                         .formatted(email)
+        );
+    }
+
+    private static ResourceConflictException customerHasAccounts(
+            long customerId
+    ) {
+        return new ResourceConflictException(
+                HAS_ACCOUNTS_CODE,
+                "Customer %d cannot be deleted while accounts exist"
+                        .formatted(customerId)
         );
     }
 
