@@ -37,7 +37,7 @@ Deliver a complete Customer REST vertical slice in the `payments` module with pe
 - [x] Controllers never expose JPA entities
 - [x] Schema is created only through Flyway and `ddl-auto=validate` remains enabled
 - [x] `mvn -B verify` is green locally
-- [ ] GitHub Actions is green for the P1-01 commit
+- [x] GitHub Actions is green for the P1-01 commit
 
 ### Handback checklist
 
