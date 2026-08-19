@@ -20,8 +20,18 @@ Make the Phase 1 REST API discoverable and reproducible, then close the mileston
 
 ### Acceptance criteria
 
-- [ ] OpenAPI is served and describes all Customer/Account endpoints
-- [ ] Postman collection runs the happy paths and representative errors
-- [ ] Phase 1 Definition of Done is fully verified
-- [ ] `mvn -B verify` is green locally and in CI
+- [x] OpenAPI is served and describes all Customer/Account endpoints
+- [x] Postman collection runs the happy paths and representative errors
+- [x] Phase 1 Definition of Done is fully verified
+- [x] `mvn -B verify` is green locally and in CI
 
+### Verification evidence
+
+- Local `mvn -B verify`: 18 tests, 0 failures, 0 errors, 0 skipped; executable Spring Boot JAR produced.
+- Runtime OpenAPI check: OpenAPI 3.0.1, 4 paths, and all 10 Customer/Account operations; `/swagger-ui.html` redirects to `/swagger-ui/index.html`.
+- Newman collection run: 19 requests, 19 test scripts, and 21 assertions with 0 failures.
+- GitHub Actions: both `CI/verify (push)` and `CI/verify (pull_request)` passed for PR #4.
+
+### Handback
+
+Phase 1 is complete. Customer and Account CRUD, validation, pagination, global errors, DTO separation, OpenAPI, Postman, Testcontainers, and CI have all been verified. The next work is the Phase 2 entry ritual and ledger design audit; no Phase 2 implementation starts from this card.

@@ -48,7 +48,7 @@ A phase closes only when every box ticks. P0/P1 are pre-filled. **Later phases a
 
 ### Phase 1 — REST foundations
 - [x] Customer & Account CRUD with bean validation, pagination, and a consistent global error format
-- [ ] OpenAPI served via springdoc; Postman collection committed
+- [x] OpenAPI served via springdoc; Postman collection committed
 - [x] Controller/service tests run against Testcontainers MySQL in CI
 - [x] DTOs fully separated from JPA entities
 

@@ -5,6 +5,11 @@ import com.ledgerpay.payments.customer.application.CustomerData;
 import com.ledgerpay.payments.customer.application.CustomerPage;
 import com.ledgerpay.payments.customer.application.CustomerService;
 import com.ledgerpay.payments.customer.domain.CustomerStatus;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -12,6 +17,7 @@ import jakarta.validation.constraints.Positive;
 
 import java.net.URI;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +31,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/customers")
+@Tag(
+        name = "Customers",
+        description = "Customer lifecycle management"
+)
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -34,6 +44,15 @@ public class CustomerController {
     }
 
     @PostMapping
+    @Operation(summary = "Create a customer")
+    @ApiResponse(
+            responseCode = "201",
+            description = "Customer created",
+            content = @Content(
+                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                    schema = @Schema(implementation = CustomerResponse.class)
+            )
+    )
     ResponseEntity<CustomerResponse> create(
             @Valid @RequestBody CreateCustomerRequest request
     ) {
@@ -52,6 +71,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Get a customer")
     CustomerResponse get(
             @PathVariable @Positive long id
     ) {
@@ -59,6 +79,7 @@ public class CustomerController {
     }
 
     @GetMapping
+    @Operation(summary = "List customers")
     PageResponse<CustomerResponse> list(
             @RequestParam(defaultValue = "0")
             @Min(0)
@@ -88,6 +109,7 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Update a customer")
     CustomerResponse update(
             @PathVariable @Positive long id,
             @Valid @RequestBody UpdateCustomerRequest request
@@ -103,6 +125,8 @@ public class CustomerController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Delete a customer")
+    @ApiResponse(responseCode = "204", description = "Customer deleted")
     ResponseEntity<Void> delete(
             @PathVariable @Positive long id
     ) {
