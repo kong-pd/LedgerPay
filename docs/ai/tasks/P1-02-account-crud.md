@@ -37,17 +37,18 @@ Add Account CRUD owned by `payments`, associated with Customer, while keeping le
 - [x] DTOs do not expose JPA entities
 - [x] Schema is created through Flyway V3 and `ddl-auto=validate` remains enabled
 - [x] `mvn -B verify` is green locally: 16 tests, 0 failures, 0 errors
-- [ ] GitHub Actions is green for the P1-02 commit
+- [x] GitHub Actions is green for PR #3 on both `push` and `pull_request`
 
 ### Verification evidence
 
 - Manual Customer/Account CRUD and representative error-contract checks passed
 - Flyway history contains successful V1, V2, and V3 migrations
 - Local `mvn -B verify` produced the executable Spring Boot JAR on 2026-08-19
+- PR #3 passed both GitHub Actions checks: `CI/verify (push)` and `CI/verify (pull_request)`
 
 ### Handback checklist
 
 - [x] ADR-0007 records the balance-free Account decision
 - [x] `CLAUDE.md` §5 and §6 updated with the local completion state
 - [x] No balance, money movement, LedgerAccount provisioning, or KYC gating was added
-- [ ] Commit and push the P1-02 branch; verify GitHub Actions before selecting P1-03
+- [x] P1-02 branch pushed and PR #3 CI verified; P1-03 selected
